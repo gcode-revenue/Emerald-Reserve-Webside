@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Emerald Reserve, Puerto Rico</title>
+  <meta name="description" content="Contact the developer of Emerald Reserve for Friends &amp; Family pre-sale pricing, availability and the full project package.">
+  <link rel="canonical" href="https://emeraldreservepr.com/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact Us | Emerald Reserve, Puerto Rico">
+  <meta property="og:description" content="Contact the developer for pre-sale pricing and availability.">
+  <meta property="og:url" content="https://emeraldreservepr.com/contact.html">
+  <meta property="og:image" content="https://emeraldreservepr.com/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#06140f">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="Emerald Reserve home">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#c9a45c" stroke-width="1.4" aria-hidden="true"><path d="M16 3C9 10 7 17 16 29 25 17 23 10 16 3Z"/><path d="M16 8v21M16 15l-4-3M16 20l5-4"/></svg>
+        <span class="brand-text"><span class="brand-name">Emerald</span><span class="brand-sub">Reserve</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="the-project.html">The Project</a></li>
+        <li><a href="index.html#residences">Residences</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="contact.html" class="btn btn-gold" aria-current="page">Contact Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero" style="background-image:url('images/aerial-community.jpg');">
+      <div class="container">
+        <span class="eyebrow">Contact Us</span>
+        <h1>Begin your Emerald Reserve story</h1>
+        <p>The Friends &amp; Family pre-sale is now open. Reach out to the developer for pricing, availability and the complete project package.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container contact-grid">
+        <aside class="contact-card reveal">
+          <span class="eyebrow">Developer</span>
+          <h2>Miguel Portilla</h2>
+          <p>Personal, one-on-one guidance through homesite selection, design options and the pre-sale process.</p>
+          <div class="contact-item">
+            <small>Email</small>
+            <a href="mailto:maportilla@emeraldreservepr.com">maportilla@emeraldreservepr.com</a>
+          </div>
+          <div class="contact-item">
+            <small>Location</small>
+            <span>Puerto Rico</span>
+          </div>
+          <div class="contact-item">
+            <small>Expected Delivery</small>
+            <span>Summer 2027</span>
+          </div>
+          <a href="mailto:maportilla@emeraldreservepr.com?subject=Emerald%20Reserve%20Pre-Sale%20Inquiry" class="btn btn-gold" style="margin-top:24px;">Email the Developer</a>
+        </aside>
+
+        <form class="form reveal" id="inquiry-form" novalidate>
+          <span class="eyebrow">Pre-Sale Inquiry</span>
+          <h2>Request information</h2>
+          <hr class="divider">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="preferred">Preferred Contact</label>
+              <select id="preferred" name="preferred">
+                <option>Email</option>
+                <option>Phone call</option>
+                <option>Text message</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>I'm Interested In</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="interest" value="Waterfront home with private dock"> Waterfront home with dock</label>
+              <label><input type="checkbox" name="interest" value="Hillside home with lake views"> Hillside home</label>
+              <label><input type="checkbox" name="interest" value="Custom home"> Custom home</label>
+              <label><input type="checkbox" name="interest" value="Pre-finished, built-to-suit"> Pre-finished, built-to-suit</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="timeline">Purchase Timeline</label>
+            <select id="timeline" name="timeline">
+              <option value="">Select one</option>
+              <option>Ready now</option>
+              <option>Within 3 months</option>
+              <option>3–6 months</option>
+              <option>Just exploring</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about the home you envision..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold">Send Inquiry</button>
+          <p class="form-note">Submitting opens your email app with your inquiry addressed to maportilla@emeraldreservepr.com — just press send.</p>
+          <p class="form-status" role="status">Your email app should now be open with your inquiry ready to send. If it didn't open, please email us directly at <a href="mailto:maportilla@emeraldreservepr.com">maportilla@emeraldreservepr.com</a>.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand" aria-label="Emerald Reserve home">
+            <svg viewBox="0 0 32 32" fill="none" stroke="#c9a45c" stroke-width="1.4" aria-hidden="true"><path d="M16 3C9 10 7 17 16 29 25 17 23 10 16 3Z"/><path d="M16 8v21M16 15l-4-3M16 20l5-4"/></svg>
+            <span class="brand-text"><span class="brand-name">Emerald</span><span class="brand-sub">Reserve</span></span>
+          </a>
+          <p style="margin-top:20px;">A private lakefront community in Puerto Rico.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="the-project.html">The Project</a></li>
+            <li><a href="index.html#residences">Residences</a></li>
+            <li><a href="index.html#gallery">Gallery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Developer</h4>
+          <ul>
+            <li>Miguel Portilla</li>
+            <li><a href="mailto:maportilla@emeraldreservepr.com">maportilla@emeraldreservepr.com</a></li>
+            <li>Puerto Rico</li>
+          </ul>
+        </div>
+      </div>
+      <p class="disclaimer">All images are conceptual artist renderings for illustration purposes only. Plans, features, finishes, square footage, amenities and delivery dates are preliminary and subject to change without notice. This website is not an offer to sell or a solicitation of an offer to buy real estate.</p>
+      <div class="footer-bottom">
+        <span>&copy; <span data-year>2026</span> Emerald Reserve. All rights reserved.</span>
+        <span>emeraldreservepr.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
