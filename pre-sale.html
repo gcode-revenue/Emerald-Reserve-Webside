@@ -48,7 +48,7 @@
         <div class="viewer-head">
           <span class="eyebrow">La Pen&iacute;nsula &middot; 10 Lots</span>
           <h2>Explore the Lots</h2>
-          <p>Select any lot on the plan to see its photos, lot size, dock details and pricing with financing.</p>
+          <p>Select any lot on the plan to see its photos, lot size, dock details and pricing.</p>
         </div>
 <div class="ps">
   <div class="wrap">
@@ -59,7 +59,7 @@
       </div>
       <p class="hint">Lot outlines traced from the survey plan, for reference only (not to scale).</p>
     </div>
-    <div class="panel" id="panel"><div class="empty">Select a lot on the plan to see photos, lot size, pricing and financing.</div></div>
+    <div class="panel" id="panel"><div class="empty">Select a lot on the plan to see photos, lot size and pricing.</div></div>
   </div>
   <div class="ps-lb" id="lb">
     <button class="x" id="lbx" aria-label="Close">×</button>
@@ -119,7 +119,6 @@
 (function(){
 /* ===== Lot data — edit here =====
    dock: true/false · price_asis / price_done in USD
-   Financing: 30% down, balance over 20 years at 5%
    photos: list of image paths                                    */
 const LOTS = {
   1:{area_m2:3729.1529,cuerdas:0.9488,dock:false,price_asis:975000,price_done:1750000,photos:["images/presale/lot1-1.jpg"]},
@@ -184,14 +183,9 @@ txt('Uso público',[985,830],-68,'lbl');
 // north arrow (survey's north points down on this sheet orientation)
 {const X=1180,Y=1080;el('path',{d:`M${X} ${Y-40}v60M${X-9} ${Y+8}l9 14 9-14`,stroke:'#555','stroke-width':2.5,fill:'none'});const t=el('text',{x:X,y:Y-48,class:'lbl','text-anchor':'middle'});t.textContent='N ↓';}
 
-const DOWN=0.30, RATE=0.05, YEARS=20;
-function pmt(p){const r=RATE/12,n=YEARS*12;return p*r/(1-Math.pow(1+r,-n))}
 const usd=v=>'$'+Math.round(v).toLocaleString('en-US');
-function priceCard(label,price,cls){const down=price*DOWN, fin=price-down;
-  return `<div class="pc ${cls}"><div class="pl">${label}</div><div class="pp">${usd(price)}</div>
-   <div class="fin"><div class="fm">${usd(pmt(fin))}<span>/mo</span></div>
-   <div class="fr"><span>Down payment (30%)</span><b>${usd(down)}</b></div>
-   <div class="fr"><span>Financed</span><b>${usd(fin)}</b></div></div></div>`}
+function priceCard(label,price,cls){
+  return `<div class="pc ${cls}"><div class="pl">${label}</div><div class="pp">${usd(price)}</div></div>`}
 const fmt=(v,d)=>v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const pending='<span class="pending">Pending</span>';
 let cur=null, idx=0;
@@ -217,7 +211,7 @@ function render(){
     <div class="row"><span class="k">Dock</span><span class="v">${L.dock?'<span class="yes">⚓ Yes</span>':'No'}</span></div>
   </div>
   <div class="prices">${priceCard('As is',L.price_asis,'asis')}${priceCard('Finished',L.price_done,'done')}</div>
-  <p class="terms">Financing: 30% down payment, remaining balance financed over 20 years at 5% fixed interest. Monthly payment is principal and interest only; taxes and insurance not included.</p><div class="lotnav"><button id="lp">‹ Lot ${cur===1?10:cur-1}</button><button id="ln">Lot ${cur===10?1:cur+1} ›</button></div></div>`;
+  <div class="lotnav"><button id="lp">‹ Lot ${cur===1?10:cur-1}</button><button id="ln">Lot ${cur===10?1:cur+1} ›</button></div></div>`;
   const g=id=>document.getElementById(id);
   g('lp').onclick=()=>select(cur===1?10:cur-1); g('ln').onclick=()=>select(cur===10?1:cur+1);
   if(g('gp')){g('gp').onclick=()=>step(-1);g('gn').onclick=()=>step(1)}
