@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pre-Sale Access | Emerald Reserve</title><meta name="robots" content="noindex, nofollow">
+  <title>Pre-Sale | Emerald Reserve</title><meta name="robots" content="noindex, nofollow">
   <meta name="description" content="Private pre-sale access to the Emerald Reserve residences.">
   <link rel="canonical" href="https://emeraldreservepr.com/pre-sale.html">
   <meta name="twitter:card" content="summary_large_image">
@@ -37,27 +37,37 @@
   <main>
     <section class="page-hero presale-hero">
       <div class="container">
-        <span class="eyebrow">Private Access</span>
-        <h1>Pre-Sale Access</h1>
-        <p>For invited guests and those with a promo code. See the residences, lot sizes, docks and pricing before they are released to the public.</p>
+        <span class="eyebrow">Interactive Plan</span>
+        <h1>Pre-Sale</h1>
+        <p>See the residences on the interactive plan: lot sizes, docks, photos and pricing.</p>
       </div>
     </section>
 
     <section class="presale-section">
       <div class="container">
-        <div class="gate" id="gate">
-          <span class="eyebrow">Enter your code</span>
-          <h2>Welcome to the pre-sale</h2>
-          <hr class="divider">
-          <form id="gate-form" autocomplete="off" novalidate>
-            <label for="code" class="sr-only">Access code</label>
-            <input id="code" name="code" type="password" placeholder="Access code" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="gate-msg">
-            <button type="submit" class="btn btn-gold">View the Homes</button>
-          </form>
-          <p class="gate-msg" id="gate-msg" role="alert" aria-live="polite"></p>
-          <p class="gate-help">Don&rsquo;t have a code? <a href="contact.html">Contact the developer</a>.</p>
+        <div class="viewer-head">
+          <span class="eyebrow">La Pen&iacute;nsula &middot; 10 Lots</span>
+          <h2>Explore the Lots</h2>
+          <p>Select any lot on the plan to see its photos, lot size, dock details and pricing with financing.</p>
         </div>
-        <div id="viewer" hidden></div>
+<div class="ps">
+  <div class="wrap">
+    <div>
+      <div class="mapcard">
+        <svg id="map" viewBox="40 -40 1200 1280" aria-label="Site plan of the 10 lots"></svg>
+        <div class="legend"><span>⚓ Includes dock</span><span><i class="sw"></i>Lago Loíza</span></div>
+      </div>
+      <p class="hint">Lot outlines traced from the survey plan, for reference only (not to scale).</p>
+    </div>
+    <div class="panel" id="panel"><div class="empty">Select a lot on the plan to see photos, lot size, pricing and financing.</div></div>
+  </div>
+  <div class="ps-lb" id="lb">
+    <button class="x" id="lbx" aria-label="Close">×</button>
+    <button class="pnav prev" id="lbp" aria-label="Previous">‹</button>
+    <img id="lbimg" alt="">
+    <button class="pnav next" id="lbn" aria-label="Next">›</button>
+  </div>
+</div>
       </div>
     </section>
   </main>
@@ -105,6 +115,126 @@
   </div>
 
   <script src="js/main.js"></script>
-  <script src="js/presale.js"></script>
+  <script>
+(function(){
+/* ===== Lot data — edit here =====
+   dock: true/false · price_asis / price_done in USD
+   Financing: 30% down, balance over 20 years at 5%
+   photos: list of image paths                                    */
+const LOTS = {
+  1:{area_m2:3729.1529,cuerdas:0.9488,dock:false,price_asis:975000,price_done:1750000,photos:["images/presale/lot1-1.jpg"]},
+  2:{area_m2:3649.5256,cuerdas:0.9285,dock:false,price_asis:750000,price_done:1600000,photos:["images/presale/lot2-1.jpg"]},
+  3:{area_m2:3588.6175,cuerdas:0.913,dock:true,price_asis:975000,price_done:1750000,photos:["images/presale/lot3-1.jpg"]},
+  4:{area_m2:3111.7252,cuerdas:0.7917,dock:true,price_asis:925000,price_done:1750000,photos:["images/presale/lot4-1.jpg"]},
+  5:{area_m2:3657.9098,cuerdas:0.9307,dock:false,price_asis:950000,price_done:1700000,photos:["images/presale/lot5-1.jpg"]},
+  6:{area_m2:3722.536,cuerdas:0.9471,dock:true,price_asis:950000,price_done:1750000,photos:["images/presale/lot6-1.jpg"]},
+  7:{area_m2:3524.3721,cuerdas:0.8967,dock:true,price_asis:925000,price_done:1750000,photos:["images/presale/lot7-1.jpg"]},
+  8:{area_m2:3607.8052,cuerdas:0.9179,dock:false,price_asis:850000,price_done:1650000,photos:["images/presale/lot8-1.jpg"]},
+  9:{area_m2:3499.8041,cuerdas:0.8904,dock:true,price_asis:950000,price_done:1800000,photos:["images/presale/lot9-1.jpg"]},
+  10:{area_m2:2991.9918,cuerdas:0.7612,dock:true,price_asis:2000000,price_done:2800000,photos:["images/presale/lot10-1.jpg"]}
+};
+
+/* Geometry traced from the survey sheet (image coords), mapped to plan view */
+const T = ([x,y]) => [y-340, 1150-x];
+const SHAPES = {
+  1:[[500,470],[1000,425],[990,468],[855,560],[815,553],[778,575],[773,600],[715,605],[515,520]],
+  2:[[515,520],[715,605],[773,600],[790,632],[812,640],[780,730],[650,770],[605,735],[455,630]],
+  3:[[855,560],[940,545],[905,600],[915,670],[938,750],[940,830],[925,895],[885,940],[650,770],[780,730],[812,640],[845,628],[858,598]],
+  4:[[605,735],[650,770],[885,940],[850,990],[790,1015],[740,1015],[680,990],[640,965],[622,935],[625,900],[605,866],[590,860]],
+  5:[[455,630],[605,735],[590,860],[565,864],[543,880],[537,905],[405,905],[330,805]],
+  6:[[405,905],[537,905],[548,935],[580,955],[640,990],[710,1040],[690,1080],[760,1175],[752,1250],[705,1275],[515,1045]],
+  7:[[515,1045],[705,1275],[600,1295],[550,1275],[495,1268],[440,1285],[405,1270],[360,1170]],
+  8:[[330,805],[515,1045],[360,1170],[340,1130],[245,915]],
+  9:[[245,915],[340,1130],[205,1222],[175,1250],[70,1145]],
+  10:[[70,1145],[175,1250],[220,1290],[50,1450],[-60,1330],[-30,1200]]
+};
+const LABELS = {1:[730,520],2:[612,645],3:[855,745],4:[700,903],5:[472,788],6:[588,1045],7:[486,1180],8:[337,965],9:[218,1118],10:[75,1288]};
+const BOUNDARY = [[1080,410],[965,590],[960,665],[1020,715],[970,905],[915,970],[850,1050],[730,1075],[820,1185],[770,1305],[650,1400],[485,1375],[430,1435],[325,1190],[220,1290]];
+const SITE = [[500,470],[1080,410],...BOUNDARY.slice(1),[50,1450],[-60,1330],[-30,1200],[70,1145],[245,915],[330,805],[455,630]];
+const LAKE = [[1080,380],...BOUNDARY.slice(0,13),[470,1620],[1300,1620],[1300,380]];
+
+const NS='http://www.w3.org/2000/svg', svg=document.getElementById('map');
+const el=(t,a,p=svg)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e};
+const pts=a=>a.map(T).map(p=>p.join(',')).join(' ');
+
+el('polygon',{points:pts(LAKE),fill:'var(--ps-lake)'});
+el('polygon',{points:pts(SITE),fill:'#ece6d6',stroke:'#3c3c3c','stroke-width':2,'stroke-dasharray':'14 5 3 5'});
+[[815,598,42],[580,905,45]].forEach(([x,y,r])=>{const [X,Y]=T([x,y]);el('circle',{cx:X,cy:Y,r,fill:'#e0d9c6',stroke:'#b9b09a','stroke-width':1.5})});
+
+const lotEls={}, badgeEls={};
+for(const n in SHAPES){
+  const p=el('polygon',{points:pts(SHAPES[n]),class:'lot'+(LOTS[n].photos.length?' has':''),tabindex:0,role:'button','aria-label':'Lot '+n});
+  p.addEventListener('click',()=>select(+n));
+  p.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(+n)}});
+  lotEls[n]=p;
+}
+for(const n in LABELS){
+  const [X,Y]=T(LABELS[n]); const g=el('g',{class:'badge'});
+  el('circle',{cx:X,cy:Y,r:21},g); const t=el('text',{x:X,y:Y+1},g); t.textContent=n; badgeEls[n]=g;
+  if(LOTS[n].dock){const a=el('text',{x:X-30,y:Y+30,class:'anchor','text-anchor':'middle'});a.textContent='⚓';}
+  if(LOTS[n].photos.length){ el('path',{class:'cam',d:`M${X+16} ${Y-30}h6l2-3h6l2 3h6v12h-22z`}); }
+}
+const txt=(s,[x,y],rot,cls)=>{const [X,Y]=T([x,y]);const t=el('text',{x:X,y:Y,class:cls,'text-anchor':'middle',transform:`rotate(${rot} ${X} ${Y})`});t.textContent=s};
+txt('Lago Loíza',[1110,850],0,'lake-lbl');
+txt('Lago Loíza',[700,1450],0,'lake-lbl');
+txt('Andrés Salas Soler',[770,400],-90,'lbl');
+txt('Dr. Maldonado',[300,720],-37,'lbl');
+txt('Sr. Pedro Galarza',[260,1360],0,'lbl');
+txt('Uso público',[985,830],-68,'lbl');
+// north arrow (survey's north points down on this sheet orientation)
+{const X=1180,Y=1080;el('path',{d:`M${X} ${Y-40}v60M${X-9} ${Y+8}l9 14 9-14`,stroke:'#555','stroke-width':2.5,fill:'none'});const t=el('text',{x:X,y:Y-48,class:'lbl','text-anchor':'middle'});t.textContent='N ↓';}
+
+const DOWN=0.30, RATE=0.05, YEARS=20;
+function pmt(p){const r=RATE/12,n=YEARS*12;return p*r/(1-Math.pow(1+r,-n))}
+const usd=v=>'$'+Math.round(v).toLocaleString('en-US');
+function priceCard(label,price,cls){const down=price*DOWN, fin=price-down;
+  return `<div class="pc ${cls}"><div class="pl">${label}</div><div class="pp">${usd(price)}</div>
+   <div class="fin"><div class="fm">${usd(pmt(fin))}<span>/mo</span></div>
+   <div class="fr"><span>Down payment (30%)</span><b>${usd(down)}</b></div>
+   <div class="fr"><span>Financed</span><b>${usd(fin)}</b></div></div></div>`}
+const fmt=(v,d)=>v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pending='<span class="pending">Pending</span>';
+let cur=null, idx=0;
+
+function select(n){
+  cur=n; idx=0;
+  for(const k in lotEls){lotEls[k].classList.toggle('sel',+k===n);badgeEls[k].classList.toggle('sel',+k===n)}
+  render();
+  if(window.innerWidth<900) document.getElementById('panel').scrollIntoView({behavior:'smooth',block:'start'});
+  
+}
+function render(){
+  const L=LOTS[cur], ph=L.photos, P=document.getElementById('panel');
+  const gal = ph.length
+    ? `<div class="gallery"><img src="${ph[idx]}" alt="Lot ${cur}, photo ${idx+1}" id="gimg">
+        ${ph.length>1?'<button class="pnav prev" id="gp">‹</button><button class="pnav next" id="gn">›</button>':''}
+        <span class="count">${idx+1} / ${ph.length}</span></div>
+       ${ph.length>1?'<div class="thumbs">'+ph.map((s,i)=>`<img src="${s}" data-i="${i}" class="${i===idx?'on':''}" alt="">`).join('')+'</div>':''}`
+    : `<div class="gallery"><div class="none"><span style="font-size:28px">📷</span>Photos coming soon</div></div>`;
+  P.innerHTML = gal + `<div class="info"><span class="kick">La Península</span><h2>Lot ${cur}</h2><div class="rows">
+    <div class="row"><span class="k">Lot area</span><span class="v">${fmt(L.area_m2,2)} m²</span></div>
+    <div class="row"><span class="k">Cuerdas</span><span class="v">${fmt(L.cuerdas,4)}</span></div>
+    <div class="row"><span class="k">Dock</span><span class="v">${L.dock?'<span class="yes">⚓ Yes</span>':'No'}</span></div>
+  </div>
+  <div class="prices">${priceCard('As is',L.price_asis,'asis')}${priceCard('Finished',L.price_done,'done')}</div>
+  <p class="terms">Financing: 30% down payment, remaining balance financed over 20 years at 5% fixed interest. Monthly payment is principal and interest only; taxes and insurance not included.</p><div class="lotnav"><button id="lp">‹ Lot ${cur===1?10:cur-1}</button><button id="ln">Lot ${cur===10?1:cur+1} ›</button></div></div>`;
+  const g=id=>document.getElementById(id);
+  g('lp').onclick=()=>select(cur===1?10:cur-1); g('ln').onclick=()=>select(cur===10?1:cur+1);
+  if(g('gp')){g('gp').onclick=()=>step(-1);g('gn').onclick=()=>step(1)}
+  if(g('gimg')) g('gimg').onclick=()=>openLb();
+  P.querySelectorAll('.thumbs img').forEach(t=>t.onclick=()=>{idx=+t.dataset.i;render()});
+}
+function step(d){const n=LOTS[cur].photos.length;idx=(idx+d+n)%n;render();if(lb.classList.contains('open'))lbimg.src=LOTS[cur].photos[idx]}
+const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
+function openLb(){lbimg.src=LOTS[cur].photos[idx];lb.classList.add('open');const m=LOTS[cur].photos.length>1;document.getElementById('lbp').style.display=document.getElementById('lbn').style.display=m?'':'none'}
+document.getElementById('lbx').onclick=()=>lb.classList.remove('open');
+lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};
+document.getElementById('lbp').onclick=()=>step(-1);
+document.getElementById('lbn').onclick=()=>step(1);
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')lb.classList.remove('open');if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1)});
+
+
+})();
+  </script>
 </body>
 </html>
