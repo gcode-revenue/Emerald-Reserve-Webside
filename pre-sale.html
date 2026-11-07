@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Sale Access | Emerald Reserve</title><meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Private pre-sale access to the Emerald Reserve residences.">
+  <link rel="canonical" href="https://emeraldreservepr.com/pre-sale.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#06140f">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/presale.css">
+</head>
+<body>
+
+  <header class="site-header solid">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="Emerald Reserve home">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#c9a45c" stroke-width="1.4" aria-hidden="true"><path d="M16 3C9 10 7 17 16 29 25 17 23 10 16 3Z"/><path d="M16 8v21M16 15l-4-3M16 20l5-4"/></svg>
+        <span class="brand-text"><span class="brand-name">Emerald</span><span class="brand-sub">Reserve</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="the-project.html">The Project</a></li>
+        <li><a href="index.html#residences">Residences</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="contact.html" class="btn btn-gold">Contact Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero presale-hero">
+      <div class="container">
+        <span class="eyebrow">Private Access</span>
+        <h1>Pre-Sale Access</h1>
+        <p>For invited guests and those with a promo code. See the residences, lot sizes, docks and pricing before they are released to the public.</p>
+      </div>
+    </section>
+
+    <section class="presale-section">
+      <div class="container">
+        <div class="gate" id="gate">
+          <span class="eyebrow">Enter your code</span>
+          <h2>Welcome to the pre-sale</h2>
+          <hr class="divider">
+          <form id="gate-form" autocomplete="off" novalidate>
+            <label for="code" class="sr-only">Access code</label>
+            <input id="code" name="code" type="password" placeholder="Access code" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="gate-msg">
+            <button type="submit" class="btn btn-gold">View the Homes</button>
+          </form>
+          <p class="gate-msg" id="gate-msg" role="alert" aria-live="polite"></p>
+          <p class="gate-help">Don&rsquo;t have a code? <a href="contact.html">Contact the developer</a>.</p>
+        </div>
+        <div id="viewer" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand" aria-label="Emerald Reserve home">
+            <svg viewBox="0 0 32 32" fill="none" stroke="#c9a45c" stroke-width="1.4" aria-hidden="true"><path d="M16 3C9 10 7 17 16 29 25 17 23 10 16 3Z"/><path d="M16 8v21M16 15l-4-3M16 20l5-4"/></svg>
+            <span class="brand-text"><span class="brand-name">Emerald</span><span class="brand-sub">Reserve</span></span>
+          </a>
+          <p style="margin-top:20px;">A private lakefront community in Puerto Rico.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="the-project.html">The Project</a></li>
+            <li><a href="index.html#residences">Residences</a></li>
+            <li><a href="smart-living.html">Smart Living</a></li>
+            <li><a href="index.html#gallery">Gallery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Developer</h4>
+          <ul>
+            <li>Miguel Portilla</li>
+            <li><a href="mailto:maportilla@emeraldreservepr.com">maportilla@emeraldreservepr.com</a></li>
+            <li>Puerto Rico</li>
+          </ul>
+        </div>
+      </div>
+      <p class="disclaimer">HyPanel Lux product image &copy; Akubela. All other images are conceptual artist renderings for illustration purposes only. Plans, features, finishes, square footage, amenities and delivery dates are preliminary and subject to change without notice. This website is not an offer to sell or a solicitation of an offer to buy real estate.</p>
+      <div class="footer-bottom">
+        <span>&copy; <span data-year>2026</span> Emerald Reserve. All rights reserved.</span>
+        <span>emeraldreservepr.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img alt="">
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/presale.js"></script>
+</body>
+</html>

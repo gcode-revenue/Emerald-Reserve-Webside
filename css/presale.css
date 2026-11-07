@@ -1,0 +1,24 @@
+
+/* Pre-sale access */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+.presale-band { background: var(--emerald-950); color: var(--cream); text-align: center; padding: 96px 0; border-top: 1px solid rgba(201, 164, 92, 0.35); border-bottom: 1px solid rgba(201, 164, 92, 0.35); }
+.presale-band .eyebrow { color: var(--gold); }
+.presale-band h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); color: var(--gold-light); max-width: 820px; margin-left: auto; margin-right: auto; }
+.presale-band p { max-width: 680px; margin: 0 auto 32px; color: rgba(246, 240, 228, 0.82); }
+.presale-hero { padding-bottom: 70px; }
+.presale-section { padding: 70px 0 100px; background: var(--cream); }
+.gate { max-width: 520px; margin: 0 auto; text-align: center; background: var(--white); border: 1px solid var(--cream-dark); box-shadow: var(--shadow); padding: 48px 40px 40px; }
+.gate h2 { font-size: 2.2rem; color: var(--emerald-900); margin-bottom: 0; }
+.gate .divider { margin: 20px auto 28px; }
+.gate form { display: flex; flex-direction: column; gap: 14px; }
+.gate input { font-family: var(--sans); font-size: 1rem; padding: 15px 18px; border: 1px solid var(--cream-dark); background: var(--cream); color: var(--ink); text-align: center; letter-spacing: .12em; border-radius: var(--radius); }
+.gate input:focus { outline: 2px solid var(--gold); outline-offset: 1px; background: #fff; }
+.gate .btn { cursor: pointer; }
+.gate-msg { min-height: 1.6em; margin: 16px 0 0; font-size: .86rem; color: #9b3b2e; }
+.gate-help { font-size: .84rem; color: var(--muted); margin: 6px 0 0; }
+.gate-help a { color: var(--gold-dark); }
+.gate.shake { animation: gate-shake .35s; }
+@keyframes gate-shake { 20% { transform: translateX(-8px); } 50% { transform: translateX(8px); } 80% { transform: translateX(-4px); } }
+.viewer-head { text-align: center; margin-bottom: 34px; }
+.viewer-head h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--emerald-900); }
+.viewer-head p { max-width: 640px; margin: 0 auto; color: var(--muted); }
