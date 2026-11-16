@@ -130,7 +130,7 @@ const LOTS = {
   7:{area_m2:3524.3721,cuerdas:0.8967,dock:true,price_asis:925000,price_done:1750000,photos:["images/presale/lot7-1.jpg"]},
   8:{area_m2:3607.8052,cuerdas:0.9179,dock:false,price_asis:850000,price_done:1650000,photos:["images/presale/lot8-1.jpg"]},
   9:{area_m2:3499.8041,cuerdas:0.8904,dock:true,price_asis:950000,price_done:1800000,photos:["images/presale/lot9-2.jpg"]},
-  10:{area_m2:2991.9918,cuerdas:0.7612,dock:true,price_asis:2000000,price_done:2800000,photos:["images/presale/lot10-1.jpg"]}
+  10:{area_m2:2991.9918,cuerdas:0.7612,dock:true,optioned:true,price_asis:null,price_done:2500000,photos:["images/presale/lot10-1.jpg"]}
 };
 
 /* Geometry traced from the survey sheet (image coords), mapped to plan view */
@@ -162,7 +162,7 @@ el('polygon',{points:pts(SITE),fill:'#ece6d6',stroke:'#3c3c3c','stroke-width':2,
 
 const lotEls={}, badgeEls={};
 for(const n in SHAPES){
-  const p=el('polygon',{points:pts(SHAPES[n]),class:'lot'+(LOTS[n].photos.length?' has':''),tabindex:0,role:'button','aria-label':'Lot '+n});
+  const p=el('polygon',{points:pts(SHAPES[n]),class:'lot'+(LOTS[n].photos.length?' has':'')+(LOTS[n].optioned?' opt':''),tabindex:0,role:'button','aria-label':'Lot '+n});
   p.addEventListener('click',()=>select(+n));
   p.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(+n)}});
   lotEls[n]=p;
@@ -210,7 +210,9 @@ function render(){
     <div class="row"><span class="k">Cuerdas</span><span class="v">${fmt(L.cuerdas,4)}</span></div>
     <div class="row"><span class="k">Dock</span><span class="v">${L.dock?'<span class="yes">⚓ Yes</span>':'No'}</span></div>
   </div>
-  <div class="prices">${priceCard('As is',L.price_asis,'asis')}${priceCard('Finished',L.price_done,'done')}</div>
+  ${L.optioned
+    ? `<div class="prices one"><div class="pc done"><div class="pl">Finished</div><div class="pp">${usd(L.price_done)}</div><span class="opt-tag">Optioned</span></div></div><p class="optnote">This lot has been optioned and is no longer available.</p>`
+    : `<div class="prices">${priceCard('As is',L.price_asis,'asis')}${priceCard('Finished',L.price_done,'done')}</div>`}
   <div class="lotnav"><button id="lp">‹ Lot ${cur===1?10:cur-1}</button><button id="ln">Lot ${cur===10?1:cur+1} ›</button></div></div>`;
   const g=id=>document.getElementById(id);
   g('lp').onclick=()=>select(cur===1?10:cur-1); g('ln').onclick=()=>select(cur===10?1:cur+1);
