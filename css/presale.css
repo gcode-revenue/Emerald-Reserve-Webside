@@ -71,7 +71,7 @@
 .ps-lb .pnav{background:rgba(255,255,255,.2);color:#fff;position:absolute}
 .ps .prices.one{grid-template-columns:1fr}
 .ps .opt-tag{display:inline-block;margin-top:2px;padding:4px 12px;background:var(--emerald-900);color:var(--gold-light);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
-.ps .optnote{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+.ps .opt-na{margin-top:10px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#9b3b2e}
 .ps .lot.opt,.ps .lot.has.opt{fill:#e4e0d4;stroke:#8b8a7a}
 .ps .lot.opt:hover{fill:#dcd6c4}
 .ps .lot.opt.sel{fill:#ecd8a6;stroke:var(--ps-sel)}
