@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var CONTACT_EMAIL = "maportilla@emeraldreservepr.com";
+  var CONTACT_EMAIL = "gcalderin@portillalaw.com";
 
   // Header background on scroll
   var header = document.querySelector(".site-header");

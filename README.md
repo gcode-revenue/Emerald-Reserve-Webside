@@ -15,7 +15,7 @@ Plain static HTML/CSS/JS — no build step. Shared styles live in `css/styles.cs
 
 ## Contact form
 
-The inquiry form opens the visitor's email app with a pre-filled message to `maportilla@emeraldreservepr.com` (no server needed). To receive submissions directly instead, point the form at a form service (e.g. Formspree) and remove the `mailto` handler in `js/main.js`.
+The inquiry form opens the visitor's email app with a pre-filled message to `gcalderin@portillalaw.com` (no server needed). To receive submissions directly instead, point the form at a form service (e.g. Formspree) and remove the `mailto` handler in `js/main.js`.
 
 ## Hosting (GitHub Pages)
 
