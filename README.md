@@ -8,7 +8,7 @@ Marketing website for **Emerald Reserve**, a private lakefront community of 10 e
 | --- | --- |
 | `index.html` | Landing page — hero, overview, key facts, residences, finishes, site plan, gallery |
 | `the-project.html` | Project details — overview, architecture, amenities, site plan, timeline |
-| `contact.html` | Developer contact (Miguel Portilla) and pre-sale inquiry form |
+| `contact.html` | Project manager contact (Giovanni Calderin) and pre-sale inquiry form |
 | `404.html` | Not-found page |
 
 Plain static HTML/CSS/JS — no build step. Shared styles live in `css/styles.css`, interactions in `js/main.js`.
