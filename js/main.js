@@ -4,6 +4,15 @@
 
   var CONTACT_EMAIL = "gcalderin@portillalaw.com";
 
+  var ES = document.documentElement.lang === "es";
+
+  // Slide the header up once the language bar has scrolled away
+  var syncBar = function () {
+    document.body.classList.toggle("past-bar", window.scrollY > 34);
+  };
+  window.addEventListener("scroll", syncBar, { passive: true });
+  syncBar();
+
   // Header background on scroll
   var header = document.querySelector(".site-header");
   if (header && !header.classList.contains("solid")) {
@@ -78,20 +87,27 @@
       if (!form.reportValidity()) return;
 
       var data = new FormData(form);
-      var interests = data.getAll("interest").join(", ") || "Not specified";
+      var L = ES
+        ? { none: "No especificado", noPhone: "No proporcionado", email: "Correo electrónico", name: "Nombre", phone: "Teléfono",
+            pref: "Contacto preferido", interest: "Interesado en", timeline: "Plazo", message: "Mensaje",
+            subject: "Consulta de preventa Emerald Reserve — " }
+        : { none: "Not specified", noPhone: "Not provided", email: "Email", name: "Name", phone: "Phone",
+            pref: "Preferred contact", interest: "Interested in", timeline: "Timeline", message: "Message",
+            subject: "Emerald Reserve Pre-Sale Inquiry — " };
+      var interests = data.getAll("interest").join(", ") || L.none;
       var name = (data.get("name") || "").trim();
       var lines = [
-        "Name: " + name,
-        "Email: " + (data.get("email") || ""),
-        "Phone: " + (data.get("phone") || "Not provided"),
-        "Preferred contact: " + (data.get("preferred") || "Email"),
-        "Interested in: " + interests,
-        "Timeline: " + (data.get("timeline") || "Not specified"),
+        L.name + ": " + name,
+        L.email + ": " + (data.get("email") || ""),
+        L.phone + ": " + (data.get("phone") || L.noPhone),
+        L.pref + ": " + (data.get("preferred") || L.email),
+        L.interest + ": " + interests,
+        L.timeline + ": " + (data.get("timeline") || L.none),
         "",
-        "Message:",
+        L.message + ":",
         data.get("message") || ""
       ];
-      var subject = "Emerald Reserve Pre-Sale Inquiry — " + name;
+      var subject = L.subject + name;
       var href = "mailto:" + CONTACT_EMAIL +
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(lines.join("\n"));

@@ -34,3 +34,6 @@ python3 -m http.server 8000
 ```
 
 All imagery consists of AI-generated conceptual renderings for illustration only.
+
+## Spanish version
+The Spanish site lives in `es/` and is generated from the English pages. After editing English text, add or update its translation in `tools/es_translations.py` and run `python3 tools/build_es.py` from the repo root (it needs `beautifulsoup4` and `lxml`). The language bar at the top of every page switches between the two versions.
