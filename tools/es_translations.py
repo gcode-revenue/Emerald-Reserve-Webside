@@ -274,6 +274,11 @@ UNITS = {
 }
 
 # Text nodes next to form inputs
+UNITS.update({
+    '<strong>Heated Infinity Pool</strong><span>Infinity-edge pool with a heating system, framing uninterrupted views across the lake.</span>': '<strong>Piscina infinita climatizada</strong><span>Piscina de borde infinito con sistema de calentamiento, que enmarca vistas ininterrumpidas del lago.</span>',
+    '<strong>Private Elevator</strong><span>A wood-paneled cabin with stainless-steel controls and effortless access to every level.</span>': '<strong>Ascensor privado</strong><span>Una cabina con paneles de madera y controles de acero inoxidable, con acceso sin esfuerzo a cada nivel.</span>',
+    'Pool image is a conceptual rendering. Elevator photo is representative of the planned installation. Savaria is a trademark of its respective owner; Emerald Reserve is not affiliated with or endorsed by Savaria.': 'La imagen de la piscina es una representación conceptual. La foto del ascensor es representativa de la instalación planificada. Savaria es una marca de su respectivo titular; Emerald Reserve no está afiliada ni respaldada por Savaria.',
+})
 TEXT = {
     'Custom home': 'Casa a su medida',
     'Hillside home': 'Casa en la ladera',
@@ -361,3 +366,7 @@ SCRIPT = [
     ('<button id="lp">‹ Lot ${', '<button id="lp">‹ Lote ${'),
     ('<button id="ln">Lot ${', '<button id="ln">Lote ${'),
 ]
+
+ATTRS.update({
+    'Wood-paneled private elevator cabin with a stainless-steel control panel and handrail': 'Cabina de ascensor privado con paneles de madera, panel de control de acero inoxidable y pasamanos',
+})
